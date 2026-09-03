@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cartório Notarial — biblioteca</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="web/biblioteca/cartorio.css" />
+</head>
+<body>
+  <header class="ct-cabecalho">
+    <div class="ct-marca">
+      <div class="ct-brasao" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 2 4 6v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V6l-8-4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M8.5 12.2l2.3 2.3 4.7-4.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="ct-marca-nome">
+        Cartório Notarial
+        <small>Prepara Portugal</small>
+      </div>
+    </div>
+    <nav>
+      <a href="#cores">Cores</a>
+      <a href="#tipografia">Tipografia</a>
+      <a href="#componentes">Componentes</a>
+      <a href="#selo">Selo</a>
+      <a href="#icones">Ícones</a>
+    </nav>
+  </header>
+
+  <main class="ct-pagina">
+    <p class="ct-sobretitulo">Biblioteca do app</p>
+    <h1>A linguagem visual do Cartório</h1>
+    <p style="max-width:62ch; color:var(--ct-texto-fraco)">
+      Esta biblioteca é só deste app — cada app do Prepara Portugal tem a sua.
+      A base vem do <em>UI Kit | Style guide</em> do Figma; a personalidade vem
+      da ideia de <strong>documento oficial</strong>: régua verde de papel
+      timbrado, cantos discretos, o selo carimbado e o número de protocolo
+      como herói da página.
+    </p>
+
+    <!-- ---------------------------------------------------------- CORES -->
+    <section id="cores" class="ct-folha ct-folha-timbrada">
+      <p class="ct-sobretitulo">01 — Cores</p>
+      <h2>Verde institucional</h2>
+      <p class="ct-legenda">A escala do kit. O verde escuro é a voz do Estado; o vivo é o realce.</p>
+      <div class="ct-grade-2" style="margin-top:var(--ct-e5)">
+        <div><div style="height:64px;border-radius:var(--ct-raio);background:#EAFFD8;border:1px solid var(--ct-borda)"></div><strong class="ct-mono">#EAFFD8</strong><div class="ct-legenda">Verde 50 · fundos suaves</div></div>
+        <div><div style="height:64px;border-radius:var(--ct-raio);background:#ABEB68"></div><strong class="ct-mono">#ABEB68</strong><div class="ct-legenda">Verde 100</div></div>
+        <div><div style="height:64px;border-radius:var(--ct-raio);background:#85C83E"></div><strong class="ct-mono">#85C83E</strong><div class="ct-legenda">Verde 200 · sucesso</div></div>
+        <div><div style="height:64px;border-radius:var(--ct-raio);background:#69B518"></div><strong class="ct-mono">#69B518</strong><div class="ct-legenda">Verde 300 · realce, foco</div></div>
+        <div><div style="height:64px;border-radius:var(--ct-raio);background:#417B03"></div><strong class="ct-mono">#417B03</strong><div class="ct-legenda">Verde 400 · ligações</div></div>
+        <div><div style="height:64px;border-radius:var(--ct-raio);background:#324C16"></div><strong class="ct-mono">#324C16</strong><div class="ct-legenda">Verde 500 · <strong>a marca</strong></div></div>
+        <div><div style="height:64px;border-radius:var(--ct-raio);background:#21330F"></div><strong class="ct-mono">#21330F</strong><div class="ct-legenda">Verde 600 · hover</div></div>
+        <div><div style="height:64px;border-radius:var(--ct-raio);background:#1F2227"></div><strong class="ct-mono">#1F2227</strong><div class="ct-legenda">Preto · texto</div></div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------- TIPOGRAFIA -->
+    <section id="tipografia" class="ct-folha">
+      <p class="ct-sobretitulo">02 — Tipografia</p>
+      <h2>Inter</h2>
+      <div class="ct-pilha" style="margin-top:var(--ct-e5)">
+        <div><span style="font:var(--ct-h1)">Registo aprovado</span><div class="ct-legenda">H1 · 40/48 · 700</div></div>
+        <div><span style="font:var(--ct-h2)">Submeter ao Cartório</span><div class="ct-legenda">H2 · 28/34 · 700</div></div>
+        <div><span style="font:var(--ct-h3)">Dados do registo</span><div class="ct-legenda">H3 · 20/24 · 700</div></div>
+        <div><span style="font:var(--ct-corpo)">Texto corrente do formulário e das listagens.</span><div class="ct-legenda">Corpo · 16/22 · 400</div></div>
+        <div><span style="font:var(--ct-mini)">Legendas, datas e notas de rodapé.</span><div class="ct-legenda">Mini · 14/20 · 400</div></div>
+        <div><span class="ct-sobretitulo">Sobretítulo em versalete</span><div class="ct-legenda">12px · 700 · maiúsculas · +0.12em — a assinatura tipográfica do app</div></div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------- COMPONENTES -->
+    <section id="componentes" class="ct-folha">
+      <p class="ct-sobretitulo">03 — Componentes</p>
+      <h2>Botões</h2>
+      <div class="ct-fila" style="margin-bottom:var(--ct-e6)">
+        <button class="ct-botao">
+          <img class="ct-icone" src="web/icones/enviar.svg" alt="" style="filter:brightness(0) invert(1)" />
+          Submeter registo
+        </button>
+        <button class="ct-botao ct-botao-linha">Guardar rascunho</button>
+        <button class="ct-botao ct-botao-perigo">Anular</button>
+        <button class="ct-botao" disabled>Indisponível</button>
+      </div>
+
+      <h2>Campos</h2>
+      <div class="ct-grade-2" style="margin-bottom:var(--ct-e6)">
+        <div class="ct-campo">
+          <label for="d1">Nome da empresa</label>
+          <input id="d1" type="text" value="Padaria do Bairro, Lda." />
+          <p class="ct-ajuda">Como consta na Carteirinha.</p>
+        </div>
+        <div class="ct-campo">
+          <label for="d2">Setor</label>
+          <select id="d2"><option>Alimentação</option><option>Comércio</option></select>
+        </div>
+        <div class="ct-campo">
+          <label for="d3">Campo com erro</label>
+          <input id="d3" type="text" aria-invalid="true" value="" />
+          <p class="ct-msg ct-msg-erro">A morada é obrigatória.</p>
+        </div>
+        <div class="ct-campo">
+          <label for="d4">Campo bloqueado</label>
+          <input id="d4" type="text" value="EP-2026-00002" disabled />
+        </div>
+      </div>
+
+      <h2>Estados</h2>
+      <div class="ct-fila" style="margin-bottom:var(--ct-e6)">
+        <span class="ct-etiqueta ct-etiqueta-aprovado">Aprovado</span>
+        <span class="ct-etiqueta ct-etiqueta-rejeitado">Rejeitado</span>
+        <span class="ct-etiqueta ct-etiqueta-analise">Em análise</span>
+      </div>
+
+      <h2>Notas</h2>
+      <div class="ct-pilha" style="margin-bottom:var(--ct-e6)">
+        <p class="ct-nota">Sem o registo aprovado, a empresa não pode operar nem vender.</p>
+        <p class="ct-nota ct-nota-erro">A taxa tem de ser paga pela conta da sua empresa.</p>
+      </div>
+
+      <h2>Listagem</h2>
+      <div class="ct-linha">
+        <div>
+          <div class="ct-linha-titulo">Registo da empresa <span class="ct-etiqueta ct-etiqueta-aprovado">Aprovado</span></div>
+          <div class="ct-linha-detalhe">Padaria do Bairro, Lda. · 04/09/2026</div>
+        </div>
+        <span class="ct-protocolo-mini">CT-2026-000001</span>
+      </div>
+      <div class="ct-linha">
+        <div>
+          <div class="ct-linha-titulo">Registo da empresa <span class="ct-etiqueta ct-etiqueta-rejeitado">Rejeitado</span></div>
+          <div class="ct-linha-detalhe">Campo obrigatório em falta: morada · 03/09/2026</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------- SELO -->
+    <section id="selo" class="ct-folha ct-folha-elevada">
+      <p class="ct-sobretitulo">04 — O selo e o protocolo</p>
+      <h2>A prova de que passou pelo Estado</h2>
+      <div class="ct-fila" style="gap:var(--ct-e7); margin-top:var(--ct-e5); align-items:center">
+        <div class="ct-selo">
+          <span class="ct-selo-titulo">Cartório<br />Notarial</span>
+          <span class="ct-selo-ano">2026</span>
+          <span class="ct-selo-titulo">Registado</span>
+        </div>
+        <div>
+          <p class="ct-sobretitulo">Protocolo</p>
+          <div class="ct-protocolo">CT-2026-000001</div>
+          <p class="ct-legenda" style="margin-top:var(--ct-e3);max-width:40ch">
+            É o número que a empresa guarda e apresenta. Qualquer pessoa o pode
+            verificar sem entrar na conta.
+          </p>
+        </div>
+        <div class="ct-selo ct-selo-recusado">
+          <span class="ct-selo-titulo">Cartório<br />Notarial</span>
+          <span class="ct-selo-ano">2026</span>
+          <span class="ct-selo-titulo">Recusado</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------- ÍCONES -->
+    <section id="icones" class="ct-folha">
+      <p class="ct-sobretitulo">05 — Ícones</p>
+      <h2>Iconex, estilo Light</h2>
+      <p class="ct-legenda">Herdam a cor do contexto (<code>currentColor</code>). Há 6 128 no catálogo — estes são os que o Cartório usa.</p>
+      <div class="ct-fila" style="gap:var(--ct-e6); margin-top:var(--ct-e5); color:var(--ct-marca)">
+        <span style="text-align:center"><img class="ct-icone ct-icone-grande" src="web/icones/documento.svg" alt="" style="width:28px;height:28px"><div class="ct-legenda">documento</div></span>
+        <span style="text-align:center"><img class="ct-icone" src="web/icones/check.svg" alt="" style="width:28px;height:28px"><div class="ct-legenda">check</div></span>
+        <span style="text-align:center"><img class="ct-icone" src="web/icones/fechar.svg" alt="" style="width:28px;height:28px"><div class="ct-legenda">fechar</div></span>
+        <span style="text-align:center"><img class="ct-icone" src="web/icones/relogio.svg" alt="" style="width:28px;height:28px"><div class="ct-legenda">relógio</div></span>
+        <span style="text-align:center"><img class="ct-icone" src="web/icones/escudo.svg" alt="" style="width:28px;height:28px"><div class="ct-legenda">escudo</div></span>
+        <span style="text-align:center"><img class="ct-icone" src="web/icones/moedas.svg" alt="" style="width:28px;height:28px"><div class="ct-legenda">moedas</div></span>
+        <span style="text-align:center"><img class="ct-icone" src="web/icones/enviar.svg" alt="" style="width:28px;height:28px"><div class="ct-legenda">enviar</div></span>
+        <span style="text-align:center"><img class="ct-icone" src="web/icones/casa.svg" alt="" style="width:28px;height:28px"><div class="ct-legenda">casa</div></span>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,337 @@
+/* ==========================================================================
+   CARTÓRIO NOTARIAL — biblioteca do app
+   --------------------------------------------------------------------------
+   Esta biblioteca é SÓ deste app. Cada app do Prepara Portugal tem a sua,
+   com a sua personalidade — não há um design system partilhado.
+
+   Base: "UI Kit | Style guide" do Figma (ZTmj6zrRcNuB0vPBUL34Y4), extraído
+   pela API REST em 2026-09-04. Os verdes, a tipografia Inter, os raios e as
+   sombras são os do kit.
+
+   A PERSONALIDADE DO CARTÓRIO
+   ---------------------------
+   Um cartório é o sítio onde as coisas ficam oficiais. A linguagem visual
+   parte daí:
+     · verde institucional escuro, sóbrio, de repartição;
+     · moldura de papel timbrado — uma régua verde no topo de cada folha;
+     · o selo de registo, redondo e carimbado, como prova de aprovação;
+     · o número de protocolo tratado como o herói da página, em monospace,
+       porque é ele que a empresa guarda e apresenta;
+     · cantos pouco arredondados (4px e 8px) — documento, não aplicação.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- TOKENS */
+:root {
+  /* Verdes do kit */
+  --ct-verde-50:  #EAFFD8;
+  --ct-verde-100: #ABEB68;
+  --ct-verde-200: #85C83E;
+  --ct-verde-300: #69B518;
+  --ct-verde-400: #417B03;
+  --ct-verde-500: #324C16;
+  --ct-verde-600: #21330F;
+  --ct-verde-700: #111907;
+
+  /* Neutros do kit */
+  --ct-cinza-50:  #D6D7D9;
+  --ct-cinza-100: #B8BBBF;
+  --ct-cinza-200: #898F98;
+  --ct-cinza-300: #484D57;
+  --ct-cinza-400: #2E323A;
+  --ct-preto:     #1F2227;
+  --ct-branco:    #FFFFFF;
+
+  --ct-erro:    #E62D2D;
+  --ct-aviso:   #FFD748;
+  --ct-sucesso: #85C83E;
+
+  /* Papéis: o verde escuro é a voz do Estado; o claro é o realce */
+  --ct-marca:        var(--ct-verde-500);
+  --ct-marca-forte:  var(--ct-verde-600);
+  --ct-marca-viva:   var(--ct-verde-300);
+  --ct-marca-suave:  var(--ct-verde-50);
+
+  --ct-fundo:        #FFFFFF;
+  --ct-fundo-papel:  #FAFBF8;   /* leve tom de papel, não branco puro */
+  --ct-texto:        var(--ct-preto);
+  --ct-texto-fraco:  var(--ct-cinza-200);
+  --ct-borda:        #E2E5E0;
+  --ct-borda-forte:  var(--ct-cinza-100);
+
+  /* Tipografia do kit */
+  --ct-fonte: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ct-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  --ct-h1: 700 40px/48px var(--ct-fonte);
+  --ct-h2: 700 28px/34px var(--ct-fonte);
+  --ct-h3: 700 20px/24px var(--ct-fonte);
+  --ct-corpo:      400 16px/22px var(--ct-fonte);
+  --ct-corpo-bold: 700 16px/22px var(--ct-fonte);
+  --ct-mini:       400 14px/20px var(--ct-fonte);
+  --ct-mini-bold:  700 14px/20px var(--ct-fonte);
+  --ct-botao:      500 16px/24px var(--ct-fonte);
+
+  /* Espaçamento */
+  --ct-e1: 4px;  --ct-e2: 8px;  --ct-e3: 12px; --ct-e4: 16px;
+  --ct-e5: 24px; --ct-e6: 32px; --ct-e7: 48px; --ct-e8: 64px;
+
+  /* Cantos discretos: isto é papel timbrado, não uma app de telemóvel */
+  --ct-raio: 4px;
+  --ct-raio-md: 8px;
+
+  --ct-sombra-1: 0 4px 4px rgba(31, 34, 39, 0.08);
+  --ct-sombra-2: 0 8px 16px rgba(31, 34, 39, 0.08);
+
+  --ct-largura: 980px;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --ct-h1: 700 28px/34px var(--ct-fonte);
+    --ct-h2: 700 22px/28px var(--ct-fonte);
+  }
+}
+
+/* ------------------------------------------------------------ FUNDAÇÕES */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Rede de segurança: uma regra de autor pode vencer o [hidden] nativo.
+   Aconteceu noutro app do projeto — fica aqui desde o primeiro dia. */
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  font: var(--ct-corpo);
+  color: var(--ct-texto);
+  background: var(--ct-fundo-papel);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ct-marca-viva);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* ---------------------------------------------------------- TIPOGRAFIA */
+h1 { font: var(--ct-h1); margin: 0 0 var(--ct-e4); letter-spacing: -0.02em; }
+h2 { font: var(--ct-h2); margin: 0 0 var(--ct-e4); letter-spacing: -0.01em; }
+h3 { font: var(--ct-h3); margin: 0 0 var(--ct-e3); }
+p  { margin: 0 0 var(--ct-e4); }
+a  { color: var(--ct-verde-400); }
+a:hover { color: var(--ct-marca-forte); }
+
+.ct-legenda { font: var(--ct-mini); color: var(--ct-texto-fraco); }
+
+/* O sobretítulo em versalete é a assinatura tipográfica do Estado aqui */
+.ct-sobretitulo {
+  font: var(--ct-mini-bold);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ct-marca);
+  margin: 0 0 var(--ct-e2);
+}
+
+/* --------------------------------------------------------- ESTRUTURA */
+/* A régua verde no topo: a moldura do papel timbrado. */
+.ct-cabecalho {
+  border-top: 4px solid var(--ct-marca);
+  border-bottom: 1px solid var(--ct-borda);
+  background: var(--ct-fundo);
+  padding: var(--ct-e4) var(--ct-e5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--ct-e4);
+  flex-wrap: wrap;
+}
+.ct-marca { display: flex; align-items: center; gap: var(--ct-e3); }
+.ct-marca-nome { font: var(--ct-h3); letter-spacing: -0.01em; }
+.ct-marca-nome small {
+  display: block;
+  font: var(--ct-mini);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ct-texto-fraco);
+  margin-top: 1px;
+}
+/* O brasão: quadrado, sério, com as armas em contorno */
+.ct-brasao {
+  width: 42px; height: 42px; flex-shrink: 0;
+  border: 2px solid var(--ct-marca);
+  border-radius: var(--ct-raio);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ct-marca);
+  background: var(--ct-branco);
+}
+.ct-brasao svg { width: 24px; height: 24px; }
+
+.ct-cabecalho nav { display: flex; gap: var(--ct-e5); align-items: center; flex-wrap: wrap; }
+.ct-cabecalho nav a {
+  color: var(--ct-texto); text-decoration: none; font: var(--ct-mini);
+  padding-bottom: 2px; border-bottom: 2px solid transparent;
+}
+.ct-cabecalho nav a:hover { color: var(--ct-marca); border-bottom-color: var(--ct-marca-viva); }
+
+.ct-pagina { max-width: var(--ct-largura); margin: var(--ct-e6) auto; padding: 0 var(--ct-e5) var(--ct-e8); }
+.ct-topo {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: var(--ct-e4); margin-bottom: var(--ct-e5); flex-wrap: wrap;
+}
+
+/* ------------------------------------------------------------- FOLHA */
+/* O cartão aqui chama-se folha, porque é o que representa. */
+.ct-folha {
+  background: var(--ct-fundo);
+  border: 1px solid var(--ct-borda);
+  border-radius: var(--ct-raio-md);
+  padding: var(--ct-e5);
+  margin-bottom: var(--ct-e5);
+}
+.ct-folha-timbrada { border-top: 3px solid var(--ct-marca); }
+.ct-folha-elevada { border: none; box-shadow: var(--ct-sombra-2); }
+
+/* ----------------------------------------------------------- BOTÕES */
+.ct-botao {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--ct-e2);
+  padding: var(--ct-e3) var(--ct-e5);
+  border: 1px solid var(--ct-marca);
+  border-radius: var(--ct-raio);
+  background: var(--ct-marca);
+  color: var(--ct-branco);
+  font: var(--ct-botao);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.ct-botao:hover { background: var(--ct-marca-forte); border-color: var(--ct-marca-forte); color: var(--ct-branco); }
+.ct-botao:disabled { background: var(--ct-cinza-100); border-color: var(--ct-cinza-100); cursor: not-allowed; }
+
+.ct-botao-linha {
+  background: transparent; color: var(--ct-marca); border-color: var(--ct-borda-forte);
+}
+.ct-botao-linha:hover { background: var(--ct-marca-suave); color: var(--ct-marca-forte); border-color: var(--ct-marca); }
+
+.ct-botao-perigo { background: transparent; color: var(--ct-erro); border-color: #F0C9C9; }
+.ct-botao-perigo:hover { background: #FFEFEF; color: var(--ct-erro); border-color: var(--ct-erro); }
+
+.ct-icone { width: 20px; height: 20px; flex-shrink: 0; display: inline-block; vertical-align: -4px; }
+
+/* ----------------------------------------------------------- CAMPOS */
+.ct-campo { margin-bottom: var(--ct-e4); }
+.ct-campo label { display: block; font: var(--ct-mini-bold); margin-bottom: var(--ct-e2); }
+.ct-campo .ct-ajuda { font: var(--ct-mini); color: var(--ct-texto-fraco); margin: var(--ct-e2) 0 0; }
+
+input[type="text"], input[type="email"], input[type="password"],
+input[type="number"], input[type="date"], input[type="file"],
+select, textarea {
+  width: 100%;
+  padding: var(--ct-e3) var(--ct-e4);
+  font: var(--ct-corpo);
+  color: var(--ct-texto);
+  background: var(--ct-branco);
+  border: 1px solid var(--ct-borda-forte);
+  border-radius: var(--ct-raio);
+}
+input:hover, select:hover, textarea:hover { border-color: var(--ct-marca-viva); }
+input:focus, select:focus, textarea:focus {
+  outline: none; border-color: var(--ct-marca);
+  box-shadow: 0 0 0 3px var(--ct-marca-suave);
+}
+input:disabled, select:disabled, textarea:disabled {
+  background: #F4F4F4; color: #D2D2D2; cursor: not-allowed;
+}
+input[aria-invalid="true"] { border-color: var(--ct-erro); background: #FFEFEF; }
+textarea { min-height: 120px; resize: vertical; }
+
+/* -------------------------------------------------------- MENSAGENS */
+.ct-msg { font: var(--ct-mini); margin: var(--ct-e3) 0 0; }
+.ct-msg-erro    { color: var(--ct-erro); }
+.ct-msg-sucesso { color: var(--ct-verde-400); }
+.ct-msg-aviso   { color: #A3730B; }
+
+.ct-nota {
+  padding: var(--ct-e4);
+  border-left: 3px solid var(--ct-marca-viva);
+  background: var(--ct-marca-suave);
+  font: var(--ct-mini);
+  border-radius: 0 var(--ct-raio) var(--ct-raio) 0;
+}
+.ct-nota-erro { border-left-color: var(--ct-erro); background: #FFEFEF; }
+
+/* --------------------------------------------------------- ETIQUETAS */
+.ct-etiqueta {
+  display: inline-flex; align-items: center; gap: var(--ct-e1);
+  padding: 2px var(--ct-e3);
+  border-radius: var(--ct-raio);
+  font: var(--ct-mini-bold);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.ct-etiqueta-aprovado { background: var(--ct-verde-50); color: var(--ct-verde-500); }
+.ct-etiqueta-rejeitado { background: #FFEFEF; color: var(--ct-erro); }
+.ct-etiqueta-analise { background: #FFFBEC; color: #A3730B; }
+
+/* ------------------------------------------------- PROTOCOLO E SELO */
+/* O protocolo é o herói: é o que a empresa guarda e apresenta. */
+.ct-protocolo {
+  font-family: var(--ct-mono);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ct-marca);
+}
+.ct-protocolo-mini { font-family: var(--ct-mono); font-size: 13px; color: var(--ct-marca); }
+
+/* O selo redondo: a marca de que passou pelo Estado. */
+.ct-selo {
+  width: 108px; height: 108px; flex-shrink: 0;
+  border: 3px double var(--ct-marca);
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 2px;
+  color: var(--ct-marca);
+  text-align: center;
+  transform: rotate(-8deg);   /* carimbado à mão, não impresso */
+  background: var(--ct-branco);
+}
+.ct-selo-titulo {
+  font: var(--ct-mini-bold); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.1em; line-height: 1.2;
+}
+.ct-selo-ano { font-family: var(--ct-mono); font-size: 15px; font-weight: 700; }
+.ct-selo-recusado { border-color: var(--ct-erro); color: var(--ct-erro); border-style: solid; }
+
+/* -------------------------------------------------------- LISTAGENS */
+.ct-linha {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: var(--ct-e4); padding: var(--ct-e4) 0;
+  border-bottom: 1px solid var(--ct-borda);
+  flex-wrap: wrap;
+}
+.ct-linha:last-child { border-bottom: none; }
+.ct-linha-titulo { font: var(--ct-corpo-bold); }
+.ct-linha-detalhe { font: var(--ct-mini); color: var(--ct-texto-fraco); margin-top: 2px; }
+
+.ct-tabela-scroll { overflow-x: auto; }
+table.ct-tabela { width: 100%; border-collapse: collapse; }
+.ct-tabela th, .ct-tabela td { text-align: left; padding: var(--ct-e3) var(--ct-e2); border-bottom: 1px solid var(--ct-borda); }
+.ct-tabela th {
+  font: var(--ct-mini-bold); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--ct-texto-fraco);
+}
+.ct-tabela td { font: var(--ct-mini); }
+.ct-tabela tbody tr:hover td { background: var(--ct-fundo-papel); }
+
+/* ------------------------------------------------------ UTILITÁRIOS */
+.ct-vazio { text-align: center; padding: var(--ct-e7) 0; font: var(--ct-mini); color: var(--ct-texto-fraco); }
+.ct-mono { font-family: var(--ct-mono); font-size: 13px; }
+.ct-pilha { display: flex; flex-direction: column; gap: var(--ct-e4); }
+.ct-fila { display: flex; gap: var(--ct-e3); align-items: center; flex-wrap: wrap; }
+.ct-grade-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--ct-e4); }
