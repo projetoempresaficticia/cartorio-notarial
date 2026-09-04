@@ -476,3 +476,66 @@ table.ct-tabela { width: 100%; border-collapse: collapse; }
   margin-bottom: 2px;
 }
 .ct-valor-texto { font: var(--ct-mini); color: #B9C2D0; }
+
+/* ==========================================================================
+   ÍCONES QUE OBEDECEM À COR
+   --------------------------------------------------------------------------
+   Um SVG carregado com <img> é um documento isolado: o `currentColor` lá
+   dentro NÃO vê o `color` desta página, e sai preto. Foi por isso que os
+   ícones da tira de valores apareciam escuros em vez de verdes — e por
+   isso andavam a levar `filter: brightness(0) invert(1)` para ficarem
+   brancos nos botões, que era um remendo.
+
+   Com máscara, o SVG define só a forma e a cor vem do
+   `background-color: currentColor` — logo herda o contexto como qualquer
+   texto. É assim que os ícones devem ser usados daqui em diante.
+
+   ATENÇÃO ao caminho: o `url()` dentro de `--ct-i` é resolvido
+   relativamente a ESTA folha de estilo (web/biblioteca/), e não ao HTML
+   que declara a variável. Por isso escreve-se `../icones/x.svg` mesmo
+   quando a variável é posta num style inline de uma página na raiz.
+   ========================================================================== */
+.ct-i {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  background-color: currentColor;
+  -webkit-mask: var(--ct-i) center / contain no-repeat;
+  mask: var(--ct-i) center / contain no-repeat;
+}
+.ct-i-md { width: 24px; height: 24px; }
+.ct-i-lg { width: 28px; height: 28px; }
+
+/* ==========================================================================
+   ENTRADA A OCUPAR O ECRÃ INTEIRO (só em computador)
+   --------------------------------------------------------------------------
+   No desktop o acesso deve caber sem rolar: cabeçalho + palco + valores
+   dentro de 100vh, com o palco a esticar para ocupar o que sobra. Em
+   telemóvel isto não se aplica — aí rolar é natural e forçar altura só
+   espremeria o formulário.
+
+   A classe é posta pelo JS enquanto o ecrã de entrada está visível, e
+   retirada ao entrar (as telas de trabalho precisam de rolar).
+   ========================================================================== */
+@media (min-width: 861px) {
+  body.ct-modo-entrada {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  body.ct-modo-entrada .ct-cabecalho { flex-shrink: 0; }
+  body.ct-modo-entrada .ct-entrada {
+    flex: 1;
+    min-height: 0;          /* deixa o filho encolher dentro do flex */
+  }
+  body.ct-modo-entrada .ct-entrada-palco {
+    min-height: 0;
+    padding-block: var(--ct-e5);
+  }
+  body.ct-modo-entrada .ct-valores {
+    flex-shrink: 0;
+    padding-block: var(--ct-e5);
+  }
+}

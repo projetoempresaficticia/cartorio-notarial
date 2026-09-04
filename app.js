@@ -135,8 +135,8 @@ document.getElementById('btn-ver-senha').addEventListener('click', (ev) => {
   campo.type = escondida ? 'text' : 'password';
   ev.currentTarget.setAttribute('aria-pressed', String(escondida));
   ev.currentTarget.setAttribute('aria-label', escondida ? 'Esconder senha' : 'Mostrar senha');
-  document.getElementById('icone-ver-senha').src =
-    escondida ? 'web/icones/olho-fechado.svg' : 'web/icones/olho.svg';
+  document.getElementById('icone-ver-senha').style.setProperty(
+    '--ct-i', `url(../icones/${escondida ? 'olho-fechado' : 'olho'}.svg)`);
 });
 
 // Ainda não há recuperação de senha: dizer isso é melhor do que um link
@@ -152,10 +152,14 @@ async function verificarSessao() {
   if (!data.session) {
     areaEntrada.hidden = false;
     areaTrabalho.hidden = true;
+    // no computador o acesso cabe no ecrã sem rolar; em telemóvel o CSS
+    // ignora esta classe, porque aí rolar é o comportamento natural
+    document.body.classList.add('ct-modo-entrada');
     return;
   }
   areaEntrada.hidden = true;
   areaTrabalho.hidden = false;
+  document.body.classList.remove('ct-modo-entrada');
   navLogado.hidden = false;
   navAnonimo.hidden = true;
 
