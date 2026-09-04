@@ -135,8 +135,8 @@ document.getElementById('btn-ver-senha').addEventListener('click', (ev) => {
   campo.type = escondida ? 'text' : 'password';
   ev.currentTarget.setAttribute('aria-pressed', String(escondida));
   ev.currentTarget.setAttribute('aria-label', escondida ? 'Esconder senha' : 'Mostrar senha');
-  document.getElementById('icone-ver-senha').style.setProperty(
-    '--ct-i', `url(../icones/${escondida ? 'olho-fechado' : 'olho'}.svg)`);
+  document.getElementById('icone-ver-senha').src =
+    `web/icones/cinza/${escondida ? 'olho-fechado' : 'olho'}.svg`;
 });
 
 // Ainda não há recuperação de senha: dizer isso é melhor do que um link

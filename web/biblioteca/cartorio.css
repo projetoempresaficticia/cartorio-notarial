@@ -539,3 +539,64 @@ table.ct-tabela { width: 100%; border-collapse: collapse; }
     padding-block: var(--ct-e5);
   }
 }
+
+/* ==========================================================================
+   ENTRADA COMPACTA — caber em ecrãs baixos
+   --------------------------------------------------------------------------
+   O primeiro ajuste assumiu 900px de altura, mas um portátil comum a 100%
+   de zoom deixa ~620px úteis depois das barras do browser. O Germano teve
+   de pôr 75% para não rolar — sinal de que o layout era grande demais, não
+   de que o zoom estava errado.
+
+   Aqui os espaçamentos passam a acompanhar a altura da janela (svh, que
+   já desconta as barras), com clamp() a travar os extremos. Assim encolhe
+   com dignidade em vez de estourar.
+   ========================================================================== */
+@media (min-width: 861px) {
+  body.ct-modo-entrada {
+    height: 100svh;
+    max-height: 100svh;
+  }
+
+  body.ct-modo-entrada .ct-cabecalho {
+    padding-block: clamp(8px, 1.2svh, 16px);
+  }
+  body.ct-modo-entrada .ct-marca-icone {
+    width: clamp(32px, 4.6svh, 44px);
+    height: clamp(32px, 4.6svh, 44px);
+  }
+  body.ct-modo-entrada .ct-marca-nome { font-size: clamp(15px, 2.2svh, 20px); }
+
+  body.ct-modo-entrada .ct-entrada-palco {
+    padding-block: clamp(12px, 3svh, 40px);
+  }
+
+  /* o cartão de acesso é o que mais precisa de encolher */
+  body.ct-modo-entrada .ct-entrada-cartao {
+    padding: clamp(18px, 3.4svh, 32px);
+    max-width: 430px;
+  }
+  body.ct-modo-entrada .ct-entrada-cartao h2 {
+    font-size: clamp(20px, 3.4svh, 28px);
+    margin-bottom: clamp(10px, 2svh, 24px);
+  }
+  body.ct-modo-entrada .ct-campo { margin-bottom: clamp(10px, 1.8svh, 16px); }
+  body.ct-modo-entrada .ct-campo input {
+    padding-block: clamp(8px, 1.4svh, 12px);
+  }
+  body.ct-modo-entrada .ct-linha-opcoes { margin: clamp(10px, 1.8svh, 16px) 0; }
+  body.ct-modo-entrada .ct-botao { padding-block: clamp(9px, 1.5svh, 12px); }
+
+  /* a tira de valores: mais apertada, e sem descrição quando falta altura */
+  body.ct-modo-entrada .ct-valores {
+    padding-block: clamp(12px, 2.4svh, 24px);
+  }
+  body.ct-modo-entrada .ct-valores-grade { gap: clamp(12px, 2svh, 24px); }
+}
+
+/* Abaixo de ~700px de altura o texto de apoio dos valores sai: o título
+   sozinho ainda comunica, e é isso que permite tudo caber. */
+@media (min-width: 861px) and (max-height: 700px) {
+  body.ct-modo-entrada .ct-valor-texto { display: none; }
+  body.ct-modo-entrada .ct-valor .ct-icone-grande { width: 22px; height: 22px; }
+}
