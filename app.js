@@ -1,6 +1,7 @@
 // Cartório Notarial — a situação da empresa perante o Estado.
 
-const areaLogin = document.getElementById('area-login');
+const areaEntrada = document.getElementById('area-entrada');
+const areaTrabalho = document.getElementById('area-trabalho');
 const areaSituacao = document.getElementById('area-situacao');
 const areaSemEmpresa = document.getElementById('area-sem-empresa');
 const navLogado = document.getElementById('nav-logado');
@@ -127,13 +128,34 @@ function desenharAprovados(lista) {
     </div>`).join('');
 }
 
+// Mostrar/esconder a senha, como na referência.
+document.getElementById('btn-ver-senha').addEventListener('click', (ev) => {
+  const campo = document.getElementById('senha');
+  const escondida = campo.type === 'password';
+  campo.type = escondida ? 'text' : 'password';
+  ev.currentTarget.setAttribute('aria-pressed', String(escondida));
+  ev.currentTarget.setAttribute('aria-label', escondida ? 'Esconder senha' : 'Mostrar senha');
+  document.getElementById('icone-ver-senha').src =
+    escondida ? 'web/icones/olho-fechado.svg' : 'web/icones/olho.svg';
+});
+
+// Ainda não há recuperação de senha: dizer isso é melhor do que um link
+// que não leva a lado nenhum.
+document.getElementById('link-senha').addEventListener('click', (ev) => {
+  ev.preventDefault();
+  mostrarMsg(document.getElementById('msg-login'),
+    'Peça ao professor para repor a sua senha.', 'aviso');
+});
+
 async function verificarSessao() {
   const { data } = await sb.auth.getSession();
   if (!data.session) {
-    areaLogin.hidden = false;
+    areaEntrada.hidden = false;
+    areaTrabalho.hidden = true;
     return;
   }
-  areaLogin.hidden = true;
+  areaEntrada.hidden = true;
+  areaTrabalho.hidden = false;
   navLogado.hidden = false;
   navAnonimo.hidden = true;
 

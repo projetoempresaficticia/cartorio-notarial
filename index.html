@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cartório Notarial</title>
-  <link rel="icon" href="web/icones/marca-128.png" />
+  <link rel="icon" href="web/icones/marca-64.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -13,7 +13,7 @@
 <body>
   <header class="ct-cabecalho">
     <div class="ct-marca">
-      <img src="web/icones/marca-128.png" alt="" width="42" height="42" style="border-radius:8px" />
+      <img class="ct-marca-icone" src="web/icones/marca-128.png" alt="" width="44" height="44" />
       <div class="ct-marca-nome">
         Cartório Notarial
         <small>Prepara Portugal</small>
@@ -26,30 +26,91 @@
       <button type="button" class="ct-botao ct-botao-linha" id="btn-sair" style="padding:6px 14px">Sair</button>
     </nav>
     <nav id="nav-anonimo">
-      <a href="verificar.html">Verificar documento</a>
+      <a href="verificar.html">
+        <img class="ct-icone" src="web/icones/escudo.svg" alt="" style="vertical-align:-5px" />
+        Verificar documento
+      </a>
     </nav>
   </header>
 
-  <main class="ct-pagina">
-    <!-- login -->
-    <div id="area-login" class="ct-folha ct-folha-timbrada" style="max-width:400px" hidden>
-      <p class="ct-sobretitulo">Acesso</p>
-      <h2>Entrar</h2>
-      <form id="form-login">
-        <div class="ct-campo">
-          <label for="email">Email de login</label>
-          <input id="email" type="email" required autocomplete="username" />
-        </div>
-        <div class="ct-campo">
-          <label for="senha">Senha</label>
-          <input id="senha" type="password" required autocomplete="current-password" />
-        </div>
-        <button type="submit" class="ct-botao">Entrar</button>
-        <p class="ct-msg" id="msg-login"></p>
-      </form>
+  <!-- ENTRADA: só aparece a quem ainda não entrou -->
+  <div id="area-entrada" class="ct-entrada" hidden>
+    <div class="ct-entrada-palco">
+      <div class="ct-entrada-cartao">
+        <p class="ct-sobretitulo">Acesso</p>
+        <h2 style="margin-bottom:var(--ct-e5)">Entrar</h2>
+
+        <form id="form-login">
+          <div class="ct-campo ct-campo-icone">
+            <label for="email">Email de login</label>
+            <img class="ct-icone-campo" src="web/icones/email.svg" alt="" style="top:calc(50% + 14px)" />
+            <input id="email" type="email" placeholder="Insira o seu email" required autocomplete="username" />
+          </div>
+
+          <div class="ct-campo ct-campo-icone">
+            <label for="senha">Senha</label>
+            <img class="ct-icone-campo" src="web/icones/cadeado.svg" alt="" style="top:calc(50% + 14px)" />
+            <input id="senha" type="password" placeholder="Insira a sua senha" required autocomplete="current-password" />
+            <button type="button" class="ct-ver-senha" id="btn-ver-senha"
+                    style="top:calc(50% + 14px)" aria-label="Mostrar senha" aria-pressed="false">
+              <img class="ct-icone" src="web/icones/olho.svg" alt="" id="icone-ver-senha" />
+            </button>
+          </div>
+
+          <div class="ct-linha-opcoes">
+            <label class="ct-lembrar" for="lembrar" style="font-weight:400;margin:0">
+              <input type="checkbox" id="lembrar" checked />
+              Lembrar-me
+            </label>
+            <a href="#" id="link-senha">Esqueceu a senha?</a>
+          </div>
+
+          <button type="submit" class="ct-botao" style="width:100%">
+            <img class="ct-icone" src="web/icones/enviar.svg" alt="" style="filter:brightness(0) invert(1)" />
+            Entrar
+          </button>
+          <p class="ct-msg" id="msg-login"></p>
+        </form>
+      </div>
     </div>
 
-    <!-- situação -->
+    <!-- os valores do cartório, como na referência -->
+    <section class="ct-valores">
+      <div class="ct-valores-grade">
+        <div class="ct-valor">
+          <img class="ct-icone" src="web/icones/escudo.svg" alt="" />
+          <div>
+            <div class="ct-valor-titulo">Segurança jurídica</div>
+            <p class="ct-valor-texto" style="margin:0">Garantimos a validade e segurança dos atos.</p>
+          </div>
+        </div>
+        <div class="ct-valor">
+          <img class="ct-icone" src="web/icones/documento.svg" alt="" />
+          <div>
+            <div class="ct-valor-titulo">Autenticidade</div>
+            <p class="ct-valor-texto" style="margin:0">Documentos autênticos com fé pública.</p>
+          </div>
+        </div>
+        <div class="ct-valor">
+          <img class="ct-icone" src="web/icones/check.svg" alt="" />
+          <div>
+            <div class="ct-valor-titulo">Confiança</div>
+            <p class="ct-valor-texto" style="margin:0">Cada registo fica verificável por qualquer pessoa.</p>
+          </div>
+        </div>
+        <div class="ct-valor">
+          <img class="ct-icone" src="web/icones/casa.svg" alt="" />
+          <div>
+            <div class="ct-valor-titulo">Fé pública</div>
+            <p class="ct-valor-texto" style="margin:0">Atos notariais com total validade legal.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- SITUAÇÃO: quem já entrou -->
+  <main class="ct-pagina" id="area-trabalho" hidden>
     <div id="area-situacao" hidden>
       <div class="ct-topo">
         <div>
@@ -62,7 +123,6 @@
         </a>
       </div>
 
-      <!-- o estado, em destaque -->
       <div class="ct-folha ct-folha-timbrada" id="painel-estado">
         <div class="ct-fila" style="gap:var(--ct-e6); align-items:center">
           <div id="selo-estado"></div>
@@ -78,7 +138,6 @@
         </div>
       </div>
 
-      <!-- por pagar -->
       <div class="ct-folha" id="painel-por-pagar" hidden>
         <p class="ct-sobretitulo">A aguardar pagamento</p>
         <h2>Boletos por pagar</h2>
@@ -94,7 +153,6 @@
         </a>
       </div>
 
-      <!-- aprovados -->
       <div class="ct-folha">
         <p class="ct-sobretitulo">Histórico</p>
         <h2>Documentos registados</h2>
