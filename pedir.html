@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cartório Notarial — pedir serviço</title>
+  <link rel="icon" href="web/icones/marca-128.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="web/biblioteca/cartorio.css" />
+</head>
+<body>
+  <header class="ct-cabecalho">
+    <div class="ct-marca">
+      <img src="web/icones/marca-128.png" alt="" width="42" height="42" style="border-radius:8px" />
+      <div class="ct-marca-nome">
+        Cartório Notarial
+        <small>Prepara Portugal</small>
+      </div>
+    </div>
+    <nav><a href="index.html">← A minha situação</a></nav>
+  </header>
+
+  <main class="ct-pagina">
+    <div id="area-login" class="ct-folha ct-folha-timbrada" style="max-width:400px" hidden>
+      <p class="ct-sobretitulo">Acesso</p>
+      <h2>Entrar</h2>
+      <form id="form-login">
+        <div class="ct-campo">
+          <label for="email">Email de login</label>
+          <input id="email" type="email" required autocomplete="username" />
+        </div>
+        <div class="ct-campo">
+          <label for="senha">Senha</label>
+          <input id="senha" type="password" required autocomplete="current-password" />
+        </div>
+        <button type="submit" class="ct-botao">Entrar</button>
+        <p class="ct-msg" id="msg-login"></p>
+      </form>
+    </div>
+
+    <div id="area-pedir" hidden>
+      <p class="ct-sobretitulo">Novo pedido</p>
+      <h1>Pedir um serviço ao Cartório</h1>
+
+      <form id="form-pedir" class="ct-folha ct-folha-timbrada">
+        <div class="ct-campo">
+          <label for="servico">Serviço</label>
+          <select id="servico" required></select>
+          <p class="ct-ajuda" id="ajuda-servico"></p>
+        </div>
+
+        <div id="campos-dinamicos"></div>
+
+        <div class="ct-campo" id="campo-assinatura" hidden>
+          <label for="assinatura">Documento assinado</label>
+          <select id="assinatura"></select>
+          <p class="ct-ajuda">
+            Este serviço exige um documento assinado no Subsight, e que ele
+            pertença à sua empresa.
+          </p>
+        </div>
+
+        <button type="submit" class="ct-botao" id="btn-pedir">
+          <img class="ct-icone" src="web/icones/enviar.svg" alt="" style="filter:brightness(0) invert(1)" />
+          Pedir e emitir boleto
+        </button>
+        <p class="ct-msg" id="msg-pedir"></p>
+      </form>
+    </div>
+
+    <!-- resultado: o boleto emitido -->
+    <div id="area-boleto" class="ct-folha ct-folha-elevada" hidden>
+      <div class="ct-fila" style="gap:var(--ct-e6); align-items:center">
+        <div id="selo-boleto"></div>
+        <div style="flex:1; min-width:240px">
+          <p class="ct-sobretitulo">Pedido registado</p>
+          <h2 id="boleto-titulo">Falta pagar</h2>
+          <p class="ct-legenda" id="boleto-explica"></p>
+
+          <div class="ct-grade-2" style="margin-top:var(--ct-e4)">
+            <div>
+              <p class="ct-sobretitulo" style="margin-bottom:2px">Boleto</p>
+              <span class="ct-protocolo" id="boleto-ref">—</span>
+            </div>
+            <div>
+              <p class="ct-sobretitulo" style="margin-bottom:2px">Valor</p>
+              <span class="ct-protocolo" id="boleto-valor">—</span>
+            </div>
+            <div>
+              <p class="ct-sobretitulo" style="margin-bottom:2px">Fatura</p>
+              <span class="ct-mono" id="boleto-fatura">—</span>
+            </div>
+            <div>
+              <p class="ct-sobretitulo" style="margin-bottom:2px">Prazo</p>
+              <span class="ct-mono" id="boleto-prazo">—</span>
+            </div>
+          </div>
+
+          <div class="ct-fila" style="margin-top:var(--ct-e5)">
+            <a href="https://projetoempresaficticia.github.io/pp-banco/" target="_blank" rel="noopener" class="ct-botao">
+              <img class="ct-icone" src="web/icones/moedas.svg" alt="" style="filter:brightness(0) invert(1)" />
+              Pagar no Prepacoin
+            </a>
+            <a href="index.html" class="ct-botao ct-botao-linha">Ver a minha situação</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="area-sem-empresa" class="ct-folha ct-nota" hidden>
+      A sua ficha ainda não está vinculada a nenhuma empresa. Só quem representa
+      uma empresa pode pedir serviços ao Cartório.
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://projetoempresaficticia.github.io/pp-base/web/comum.js"></script>
+  <script src="web/biblioteca/cartorio.js"></script>
+  <script src="pedir.js"></script>
+</body>
+</html>

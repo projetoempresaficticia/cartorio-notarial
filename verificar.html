@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cartório Notarial — verificar</title>
+  <link rel="icon" href="web/icones/marca-128.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="web/biblioteca/cartorio.css" />
+</head>
+<body>
+  <header class="ct-cabecalho">
+    <div class="ct-marca">
+      <img src="web/icones/marca-128.png" alt="" width="42" height="42" style="border-radius:8px" />
+      <div class="ct-marca-nome">
+        Cartório Notarial
+        <small>Prepara Portugal</small>
+      </div>
+    </div>
+    <nav><a href="index.html">A minha situação</a></nav>
+  </header>
+
+  <main class="ct-pagina">
+    <p class="ct-sobretitulo">Consulta pública</p>
+    <h1>Verificar um documento</h1>
+    <p class="ct-legenda" style="max-width:60ch">
+      Qualquer pessoa pode confirmar aqui um protocolo do Cartório
+      (<span class="ct-mono">CT-…</span>) ou uma certidão permanente
+      (<span class="ct-mono">CERT-…</span>), sem precisar de conta.
+      A certidão mostra a situação <strong>de hoje</strong> da empresa.
+    </p>
+
+    <form id="form-verificar" class="ct-folha ct-folha-timbrada" style="max-width:460px">
+      <div class="ct-campo">
+        <label for="codigo">Código</label>
+        <input id="codigo" type="text" placeholder="CT-2026-000001 ou CERT-2026-000001" required />
+      </div>
+      <button type="submit" class="ct-botao">
+        <img class="ct-icone" src="web/icones/escudo.svg" alt="" style="filter:brightness(0) invert(1)" />
+        Verificar
+      </button>
+      <p class="ct-msg" id="msg-verificar"></p>
+    </form>
+
+    <div id="resultado" class="ct-folha ct-folha-elevada" hidden>
+      <div class="ct-fila" style="gap:var(--ct-e6); align-items:flex-start">
+        <div id="selo-resultado"></div>
+        <div style="flex:1; min-width:260px">
+          <p class="ct-sobretitulo" id="r-sobretitulo">—</p>
+          <h2 id="r-titulo">—</h2>
+          <p class="ct-legenda" id="r-subtitulo"></p>
+          <div class="ct-grade-2" id="r-campos" style="margin-top:var(--ct-e5)"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://projetoempresaficticia.github.io/pp-base/web/comum.js"></script>
+  <script src="web/biblioteca/cartorio.js"></script>
+  <script src="verificar.js"></script>
+</body>
+</html>

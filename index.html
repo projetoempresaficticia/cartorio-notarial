@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cartório Notarial</title>
+  <link rel="icon" href="web/icones/marca-128.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="web/biblioteca/cartorio.css" />
+</head>
+<body>
+  <header class="ct-cabecalho">
+    <div class="ct-marca">
+      <img src="web/icones/marca-128.png" alt="" width="42" height="42" style="border-radius:8px" />
+      <div class="ct-marca-nome">
+        Cartório Notarial
+        <small>Prepara Portugal</small>
+      </div>
+    </div>
+    <nav id="nav-logado" hidden>
+      <a href="pedir.html">Pedir serviço</a>
+      <a href="verificar.html">Verificar</a>
+      <a href="biblioteca.html">Biblioteca</a>
+      <button type="button" class="ct-botao ct-botao-linha" id="btn-sair" style="padding:6px 14px">Sair</button>
+    </nav>
+    <nav id="nav-anonimo">
+      <a href="verificar.html">Verificar documento</a>
+    </nav>
+  </header>
+
+  <main class="ct-pagina">
+    <!-- login -->
+    <div id="area-login" class="ct-folha ct-folha-timbrada" style="max-width:400px" hidden>
+      <p class="ct-sobretitulo">Acesso</p>
+      <h2>Entrar</h2>
+      <form id="form-login">
+        <div class="ct-campo">
+          <label for="email">Email de login</label>
+          <input id="email" type="email" required autocomplete="username" />
+        </div>
+        <div class="ct-campo">
+          <label for="senha">Senha</label>
+          <input id="senha" type="password" required autocomplete="current-password" />
+        </div>
+        <button type="submit" class="ct-botao">Entrar</button>
+        <p class="ct-msg" id="msg-login"></p>
+      </form>
+    </div>
+
+    <!-- situação -->
+    <div id="area-situacao" hidden>
+      <div class="ct-topo">
+        <div>
+          <p class="ct-sobretitulo">A sua empresa</p>
+          <h1 id="nome-empresa">—</h1>
+        </div>
+        <a href="pedir.html" class="ct-botao">
+          <img class="ct-icone" src="web/icones/documento-add.svg" alt="" style="filter:brightness(0) invert(1)" />
+          Pedir serviço
+        </a>
+      </div>
+
+      <!-- o estado, em destaque -->
+      <div class="ct-folha ct-folha-timbrada" id="painel-estado">
+        <div class="ct-fila" style="gap:var(--ct-e6); align-items:center">
+          <div id="selo-estado"></div>
+          <div style="flex:1; min-width:220px">
+            <h2 id="titulo-estado" style="margin-bottom:var(--ct-e2)">—</h2>
+            <p class="ct-legenda" id="detalhe-estado" style="margin:0"></p>
+            <div id="linha-certidao" style="margin-top:var(--ct-e4)" hidden>
+              <p class="ct-sobretitulo" style="margin-bottom:2px">Certidão permanente</p>
+              <span class="ct-protocolo" id="cert-codigo">—</span>
+              <span class="ct-legenda" id="cert-validade"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- por pagar -->
+      <div class="ct-folha" id="painel-por-pagar" hidden>
+        <p class="ct-sobretitulo">A aguardar pagamento</p>
+        <h2>Boletos por pagar</h2>
+        <p class="ct-legenda">
+          Pague no Prepacoin. Assim que o pagamento entrar, o Cartório trata do
+          resto e emite o protocolo automaticamente.
+        </p>
+        <div id="lista-por-pagar" style="margin-top:var(--ct-e4)"></div>
+        <a href="https://projetoempresaficticia.github.io/pp-banco/" target="_blank" rel="noopener"
+           class="ct-botao ct-botao-linha" style="margin-top:var(--ct-e4)">
+          <img class="ct-icone" src="web/icones/moedas.svg" alt="" />
+          Ir ao Prepacoin pagar
+        </a>
+      </div>
+
+      <!-- aprovados -->
+      <div class="ct-folha">
+        <p class="ct-sobretitulo">Histórico</p>
+        <h2>Documentos registados</h2>
+        <div id="lista-aprovados"><p class="ct-vazio">A carregar…</p></div>
+      </div>
+
+      <p class="ct-msg" id="msg-geral"></p>
+    </div>
+
+    <div id="area-sem-empresa" class="ct-folha ct-nota" hidden>
+      A sua ficha ainda não está vinculada a nenhuma empresa. Só quem representa
+      uma empresa pode tratar de registos no Cartório.
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://projetoempresaficticia.github.io/pp-base/web/comum.js"></script>
+  <script src="web/biblioteca/cartorio.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
