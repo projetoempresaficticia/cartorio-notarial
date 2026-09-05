@@ -7,7 +7,7 @@ app por construir.
 **Depende de:** [pp-base](https://github.com/projetoempresaficticia/pp-base),
 [classcard](https://github.com/projetoempresaficticia/classcard),
 [subsight](https://github.com/projetoempresaficticia/subsight),
-[pp-banco](https://github.com/projetoempresaficticia/pp-banco),
+[prepacoin](https://github.com/projetoempresaficticia/prepacoin),
 [pp-orgaos](https://github.com/projetoempresaficticia/pp-orgaos)
 
 Site: https://projetoempresaficticia.github.io/cartorio-notarial/
